@@ -31,9 +31,21 @@ git add index.html
 git commit -m "feat: version [nom-du-prospect]"
 git push origin [nom-du-prospect]
 
-rm -rf .vercel   # obligatoire — retient la liaison au projet précédent
+rm -rf .vercel   # OBLIGATOIRE avant chaque nouveau prospect
 npx vercel --yes --name [nom-du-prospect]
 ```
+
+## Erreurs connues et correctifs
+
+**Problème `.vercel` :** Sans `rm -rf .vercel`, Vercel redéploie sur le projet précédent au lieu d'en créer un nouveau. Toujours supprimer ce dossier avant de déployer un nouveau prospect.
+
+**`vercel` introuvable en bash :** Utiliser `npx vercel` — `vercel` installé globalement n'est pas dans le PATH bash.
+
+**`--name` déprécié :** Le flag fonctionne encore malgré l'avertissement. Ne pas le supprimer — sans lui, le nom du dossier ("prospection site immo" avec espaces) provoque une erreur 400.
+
+**Remplacement archi en deux passes :** Le template archi contient deux formes du nom. Remplacer d'abord la forme longue, puis la courte :
+1. `Confort Seven Architecture et Design` → `[NOM COMPLET]`
+2. `Confort Seven` → `[NOM COURT]`
 
 ## Points de personnalisation — template-immo.html
 
@@ -52,13 +64,23 @@ npx vercel --yes --name [nom-du-prospect]
 
 | Quoi | Comment trouver |
 |---|---|
-| Nom du cabinet | Remplacement global de `Confort Seven` (~6 occurrences : title, nav-logo, footer, WhatsApp message) |
+| Nom du cabinet (long) | `Confort Seven Architecture et Design` — remplacer en premier (~5 occurrences) |
+| Nom du cabinet (court) | `Confort Seven` — remplacer en second (~4 occurrences : title, nav-logo, footer) |
 | Numéro WhatsApp | `const WA_NUMBER = '225XXXXXXXXXX'` (ligne ~1384) + liens `wa.me/225XXXXXXXXXX` |
 | Téléphone affiché | `+225 07 00 00 00 00` (lignes ~1300 et ~1356) |
 | Email | `contact@archetypafrica.com` (lignes ~1309 et ~1357) |
 | Adresse | `Cocody Danga, Abidjan` (lignes ~1291, ~1358) |
 | Couleur accent (cuivre) | `--cuivre:#B87333` dans `:root` (ligne ~19) |
 
+## Prospects déployés
+
+| Branche | URL Vercel | Template |
+|---|---|---|
+| `sci-transville` | https://sci-transville.vercel.app | immo |
+| `immo-doks` | https://immo-doks.vercel.app | immo |
+| `lassistance-immobilier` | https://lassistance-immobilier.vercel.app | immo |
+| `a-plus-a-architecture-adou` | https://a-plus-a-architecture-adou.vercel.app | archi |
+
 ## Vercel config
 
-`vercel.json` rewrites all routes to `index.html` (single-page static site). No build step — Vercel serves the file directly.
+`vercel.json` rewrites all routes to `index.html` (single-page statique, pas de build). Login : `npx vercel login` (une seule fois par poste).
