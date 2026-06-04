@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confort Seven — Architecture & Design</title>
+  <meta name="description" content="Cabinet d'architecture de référence à Abidjan. Projets résidentiels, commerciaux et institutionnels en Côte d'Ivoire et en Afrique de l'Ouest." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --noir: #0a0a0a;
+      --blanc: #fafafa;
+      --gris: #6b6b6b;
+      --gris-clair: #f0ede8;
+      --cuivre: #B87333;
+      --cuivre-fonce: #8B5E2E;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--blanc);
+      color: var(--noir);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.5rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s var(--ease), padding 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    }
+    nav.scrolled {
+      background: rgba(10,10,10,0.97);
+      padding: 1rem 5%;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--blanc);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--cuivre); }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--cuivre);
+      transition: width 0.3s var(--ease);
+    }
+    .nav-links a:hover { color: var(--blanc); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--cuivre);
+      color: var(--blanc) !important;
+      padding: 0.6rem 1.4rem;
+      font-size: 0.8rem !important;
+      letter-spacing: 0.08em !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--cuivre-fonce) !important; }
+    .nav-cta::after { display: none !important; }
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+      cursor: pointer;
+    }
+    .burger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--blanc);
+      transition: transform 0.3s var(--ease), opacity 0.3s;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--noir);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s var(--ease);
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mobile-menu a {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--blanc);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--cuivre); }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-32px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(32px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 7rem 5%; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cuivre);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .section-sub {
+      color: var(--gris);
+      font-size: 1.05rem;
+      max-width: 580px;
+      line-height: 1.75;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 5%;
+      overflow: hidden;
+      background: var(--noir);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 1;
+    }
+    .hero-bg-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.28) saturate(0.7);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      padding-top: 5rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cuivre);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 500;
+      color: var(--blanc);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--cuivre);
+    }
+    .hero-sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 1.1rem;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--cuivre);
+      color: var(--blanc);
+      padding: 0.9rem 2rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.2s var(--ease), transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--cuivre-fonce); transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--blanc);
+      padding: 0.9rem 2rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--cuivre); background: rgba(184,115,51,0.08); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 5%;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .hero-scroll-line {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.3);
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--blanc);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+      height: 520px;
+    }
+    .about-img-main {
+      position: absolute;
+      top: 0; left: 0;
+      width: 72%;
+      height: 80%;
+      overflow: hidden;
+    }
+    .about-img-main img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .about-img-accent {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 52%;
+      height: 52%;
+      border: 4px solid var(--blanc);
+      overflow: hidden;
+    }
+    .about-img-accent img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .about-badge {
+      position: absolute;
+      top: 50%; right: -1.5rem;
+      transform: translateY(-50%);
+      background: var(--noir);
+      color: var(--blanc);
+      padding: 1.5rem;
+      text-align: center;
+      min-width: 120px;
+    }
+    .about-badge-num {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      color: var(--cuivre);
+      line-height: 1;
+    }
+    .about-badge-txt {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.4rem;
+      opacity: 0.75;
+    }
+    .about-values {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .about-value {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .about-value-icon {
+      width: 36px; height: 36px;
+      background: var(--gris-clair);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--cuivre);
+      font-size: 1rem;
+    }
+    .about-value-text strong {
+      display: block;
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+    .about-value-text span {
+      font-size: 0.875rem;
+      color: var(--gris);
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--gris-clair); }
+    .services-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+      align-items: end;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+    }
+    .service-card {
+      background: var(--blanc);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s var(--ease);
+      cursor: default;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--cuivre);
+      transition: width 0.4s var(--ease);
+    }
+    .service-card:hover { transform: translateY(-4px); }
+    .service-card:hover::before { width: 100%; }
+    .service-num {
+      font-family: var(--serif);
+      font-size: 3rem;
+      color: var(--gris-clair);
+      line-height: 1;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .service-icon {
+      width: 44px; height: 44px;
+      color: var(--cuivre);
+      margin-bottom: 1.2rem;
+    }
+    .service-icon svg { width: 100%; height: 100%; }
+    .service-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .service-desc {
+      font-size: 0.875rem;
+      color: var(--gris);
+      line-height: 1.7;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--blanc); }
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 0.5rem 1.2rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(0,0,0,0.12);
+      color: var(--gris);
+      transition: all 0.2s;
+    }
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--noir);
+      color: var(--blanc);
+      border-color: var(--noir);
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+    }
+    .project-card.hidden {
+      display: none;
+    }
+    .project-thumb {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .project-thumb-inner {
+      width: 100%; height: 100%;
+      transition: transform 0.5s var(--ease);
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .project-card:hover .project-thumb-inner { transform: scale(1.06); }
+    .project-info {
+      padding: 1.5rem 0 0.5rem;
+    }
+    .project-cat {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cuivre);
+      margin-bottom: 0.4rem;
+    }
+    .project-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+    .project-loc {
+      font-size: 0.82rem;
+      color: var(--gris);
+    }
+
+    /* ── PROCESS ── */
+    #process { background: var(--noir); color: var(--blanc); }
+    #process .section-title { color: var(--blanc); }
+    #process .section-sub { color: rgba(255,255,255,0.55); }
+    .process-header { text-align: center; margin-bottom: 5rem; }
+    .process-steps {
+      display: flex;
+      gap: 0;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 2.5rem; left: 8%; right: 8%;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+    .process-step {
+      flex: 1;
+      text-align: center;
+      padding: 0 1.5rem;
+      position: relative;
+    }
+    .step-circle {
+      width: 5rem; height: 5rem;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: rgba(255,255,255,0.35);
+      transition: all 0.4s var(--ease);
+      position: relative;
+      background: var(--noir);
+      z-index: 1;
+    }
+    .process-step.active .step-circle {
+      border-color: var(--cuivre);
+      color: var(--cuivre);
+      background: rgba(184,115,51,0.08);
+    }
+    .step-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: rgba(255,255,255,0.7);
+      transition: color 0.4s;
+    }
+    .process-step.active .step-title { color: var(--blanc); }
+    .step-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+    }
+
+    /* ── STATS ── */
+    #stats { background: var(--cuivre); padding: 5rem 5%; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+    .stat-item { text-align: center; color: var(--blanc); }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 4vw, 4rem);
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--gris-clair); }
+    .testimonials-header { text-align: center; margin-bottom: 4rem; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .testimonial-card {
+      background: var(--blanc);
+      padding: 2.5rem;
+    }
+    .testimonial-quote {
+      font-family: var(--serif);
+      font-size: 3rem;
+      color: var(--cuivre);
+      line-height: 0.5;
+      margin-bottom: 1.2rem;
+    }
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: var(--gris);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .author-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cuivre), var(--cuivre-fonce));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blanc);
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .author-name {
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    .author-role {
+      font-size: 0.78rem;
+      color: var(--gris);
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 0.5rem;
+    }
+    .star { color: var(--cuivre); font-size: 0.9rem; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--blanc); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 5fr 4fr;
+      gap: 6rem;
+    }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gris);
+      margin-bottom: 0.5rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: var(--blanc);
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      color: var(--noir);
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+      border-radius: 0;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--cuivre); }
+    textarea { resize: vertical; min-height: 120px; }
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--noir);
+      color: var(--blanc);
+      padding: 1rem 2.2rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      border: none;
+      font-family: var(--sans);
+    }
+    .submit-btn:hover { background: var(--cuivre); }
+    .contact-info { padding-top: 0.5rem; }
+    .contact-info-title {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .contact-info-sub {
+      color: var(--gris);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .contact-items { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .contact-item-icon {
+      width: 40px; height: 40px;
+      background: var(--gris-clair);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--cuivre);
+    }
+    .contact-item-text strong {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gris);
+      margin-bottom: 0.25rem;
+    }
+    .contact-item-text span {
+      font-size: 0.95rem;
+    }
+    .whatsapp-block {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      background: #25D366;
+      color: var(--blanc);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .whatsapp-block-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+    .whatsapp-block-title {
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+    .whatsapp-block-sub {
+      font-size: 0.78rem;
+      opacity: 0.85;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--noir);
+      color: rgba(255,255,255,0.55);
+      padding: 4rem 5% 2rem;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 2rem;
+    }
+    .footer-brand .nav-logo { display: inline-block; margin-bottom: 1rem; }
+    .footer-brand p { font-size: 0.875rem; line-height: 1.7; }
+    .footer-col h4 {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blanc);
+      margin-bottom: 1.2rem;
+    }
+    .footer-col ul li { margin-bottom: 0.6rem; }
+    .footer-col ul li a {
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--cuivre); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+    .footer-social a {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .footer-social a:hover { border-color: var(--cuivre); color: var(--cuivre); }
+
+    /* ── FLOATING WHATSAPP ── */
+    .wa-float {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      color: var(--blanc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 900;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: transform 0.2s var(--ease), box-shadow 0.2s;
+      font-size: 1.5rem;
+    }
+    .wa-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.5);
+    }
+    .wa-float svg { width: 28px; height: 28px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      #about { grid-template-columns: 1fr; gap: 4rem; }
+      .about-visual { height: 380px; }
+      .about-badge { right: 1rem; }
+      .services-header { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 5rem 5%; }
+      .nav-links { display: none; }
+      .burger { display: flex; }
+      .hero-title { font-size: clamp(2.2rem, 7vw, 3.5rem); }
+      .services-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .projects-header { flex-direction: column; align-items: flex-start; }
+      .process-steps { flex-direction: column; gap: 2rem; }
+      .process-steps::before { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Confort Seven<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">À Propos</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#process">Processus</a></li>
+    <li><a href="#contact" class="nav-cta">Nous Contacter</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" class="mobile-link">À Propos</a>
+  <a href="#services" class="mobile-link">Services</a>
+  <a href="#projects" class="mobile-link">Projets</a>
+  <a href="#process" class="mobile-link">Processus</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=80&auto=format&fit=crop" alt="" />
+  </div>
+  <div class="hero-content reveal">
+    <p class="hero-eyebrow">Cabinet d'Architecture — Abidjan, Côte d'Ivoire</p>
+    <h1 class="hero-title">
+      Concevoir<br>
+      l'Afrique de<br>
+      <em>demain</em>
+    </h1>
+    <p class="hero-sub">
+      Architecture contemporaine ancrée dans l'identité africaine. Chaque espace raconte une histoire, chaque projet transforme un territoire.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Voir nos projets
+      </a>
+      <a href="#contact" class="btn-outline">Démarrer un projet</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="hero-scroll-line"></div>
+    <span>Découvrir</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal-left">
+    <div class="about-img-main">
+      <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=80&auto=format&fit=crop" alt="Architecture contemporaine africaine" />
+    </div>
+    <div class="about-img-accent">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80&auto=format&fit=crop" alt="Détail architectural" />
+    </div>
+    <div class="about-badge">
+      <div class="about-badge-num">15+</div>
+      <div class="about-badge-txt">Années<br>d'expérience</div>
+    </div>
+  </div>
+  <div class="about-text reveal-right">
+    <p class="section-label">Notre histoire</p>
+    <h2 class="section-title">Une vision africaine de l'architecture</h2>
+    <p class="section-sub">
+      Fondé à Abidjan, Confort Seven Architecture et Design conçoit des espaces qui dialoguent avec leur environnement culturel et climatique. Notre approche fusionne les techniques contemporaines avec l'héritage architectural de l'Afrique de l'Ouest.
+    </p>
+    <div class="about-values">
+      <div class="about-value">
+        <div class="about-value-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="about-value-text">
+          <strong>Excellence conceptuelle</strong>
+          <span>Design rigoureux porté par une recherche permanente sur l'habitat africain contemporain.</span>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="about-value-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="about-value-text">
+          <strong>Durabilité & contexte</strong>
+          <span>Matériaux locaux, ventilation naturelle, adaptation au climat tropical ivoirien.</span>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="about-value-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="about-value-text">
+          <strong>Collaboration profonde</strong>
+          <span>Chaque client est un partenaire — nous concevons ensemble, nous construisons ensemble.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div class="reveal">
+      <p class="section-label">Ce que nous faisons</p>
+      <h2 class="section-title">Nos expertises au service de votre vision</h2>
+    </div>
+    <p class="section-sub reveal">De la conception à la livraison, nous accompagnons chaque projet avec précision et passion.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3 class="service-title">Architecture Résidentielle</h3>
+      <p class="service-desc">Villas privées, immeubles d'habitation et résidences de standing conçus pour le mode de vie ivoirien contemporain.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">02</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3 class="service-title">Architecture Commerciale</h3>
+      <p class="service-desc">Bureaux, centres commerciaux, hôtels et espaces de travail qui renforcent la productivité et l'image de marque.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">03</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h20M4 20V8l8-6 8 6v12"/><rect x="9" y="12" width="6" height="8"/></svg>
+      </div>
+      <h3 class="service-title">Projets Institutionnels</h3>
+      <p class="service-desc">Édifices publics, écoles, hôpitaux et infrastructures culturelles conçus pour durer et servir les communautés.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">04</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+      </div>
+      <h3 class="service-title">Design Intérieur</h3>
+      <p class="service-desc">Espaces intérieurs harmonieux qui prolongent l'architecture extérieure tout en reflétant la personnalité du client.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">05</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <h3 class="service-title">Urbanisme & Masterplan</h3>
+      <p class="service-desc">Planification urbaine intégrée, lotissements durables et développement de quartiers mixtes à l'échelle des villes africaines.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">06</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+      <h3 class="service-title">Réhabilitation & Rénovation</h3>
+      <p class="service-desc">Transformation et mise aux normes d'édifices existants, alliant respect de l'existant et modernité des usages.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-header">
+    <div class="reveal">
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Nos réalisations</h2>
+    </div>
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">Tous</button>
+      <button class="filter-btn" data-filter="residentiel">Résidentiel</button>
+      <button class="filter-btn" data-filter="commercial">Commercial</button>
+      <button class="filter-btn" data-filter="institutionnel">Institutionnel</button>
+    </div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal" data-cat="residentiel">
+      <div class="project-thumb">
+        <img class="project-thumb-inner" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80&auto=format&fit=crop" alt="Villa Cocody Danga" />
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Résidentiel</p>
+        <h3 class="project-title">Villa Cocody Danga</h3>
+        <p class="project-loc">Cocody, Abidjan — 2023</p>
+      </div>
+    </div>
+    <div class="project-card reveal" data-cat="commercial">
+      <div class="project-thumb">
+        <img class="project-thumb-inner" src="https://images.unsplash.com/photo-1554435493-93422e8220c8?w=800&q=80&auto=format&fit=crop" alt="Immeuble de Bureaux Plateau" />
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Commercial</p>
+        <h3 class="project-title">Immeuble de Bureaux Plateau</h3>
+        <p class="project-loc">Plateau, Abidjan — 2022</p>
+      </div>
+    </div>
+    <div class="project-card reveal" data-cat="institutionnel">
+      <div class="project-thumb">
+        <img class="project-thumb-inner" src="https://images.unsplash.com/photo-1567361808960-dec9cb578182?w=800&q=80&auto=format&fit=crop" alt="Centre Culturel de Marcory" />
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Institutionnel</p>
+        <h3 class="project-title">Centre Culturel de Marcory</h3>
+        <p class="project-loc">Marcory, Abidjan — 2022</p>
+      </div>
+    </div>
+    <div class="project-card reveal" data-cat="residentiel">
+      <div class="project-thumb">
+        <img class="project-thumb-inner" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80&auto=format&fit=crop" alt="Résidence Les Palmiers" />
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Résidentiel</p>
+        <h3 class="project-title">Résidence Les Palmiers</h3>
+        <p class="project-loc">Riviera, Abidjan — 2021</p>
+      </div>
+    </div>
+    <div class="project-card reveal" data-cat="commercial">
+      <div class="project-thumb">
+        <img class="project-thumb-inner" src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&q=80&auto=format&fit=crop" alt="Hôtel Boutique Deux Plateaux" />
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Commercial</p>
+        <h3 class="project-title">Hôtel Boutique Deux Plateaux</h3>
+        <p class="project-loc">Deux Plateaux, Abidjan — 2021</p>
+      </div>
+    </div>
+    <div class="project-card reveal" data-cat="institutionnel">
+      <div class="project-thumb">
+        <img class="project-thumb-inner" src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80&auto=format&fit=crop" alt="École Primaire de Yopougon" />
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Institutionnel</p>
+        <h3 class="project-title">École Primaire de Yopougon</h3>
+        <p class="project-loc">Yopougon, Abidjan — 2020</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="process-header">
+    <p class="section-label reveal">Notre méthode</p>
+    <h2 class="section-title reveal">Un processus clair,<br>du concept à la clé</h2>
+    <p class="section-sub reveal" style="margin: 0 auto;">Chaque projet suit une méthodologie rigoureuse qui garantit qualité, délais et satisfaction totale.</p>
+  </div>
+  <div class="process-steps">
+    <div class="process-step active" id="step-1">
+      <div class="step-circle">01</div>
+      <h3 class="step-title">Brief & Analyse</h3>
+      <p class="step-desc">Écoute active de vos besoins, analyse du site et définition du programme architectural.</p>
+    </div>
+    <div class="process-step" id="step-2">
+      <div class="step-circle">02</div>
+      <h3 class="step-title">Conception</h3>
+      <p class="step-desc">Esquisses, avant-projets et développement du concept architectural en collaboration.</p>
+    </div>
+    <div class="process-step" id="step-3">
+      <div class="step-circle">03</div>
+      <h3 class="step-title">Dossiers techniques</h3>
+      <p class="step-desc">Plans d'exécution, spécifications techniques et dossier de permis de construire.</p>
+    </div>
+    <div class="process-step" id="step-4">
+      <div class="step-circle">04</div>
+      <h3 class="step-title">Suivi chantier</h3>
+      <p class="step-desc">Direction et contrôle des travaux pour garantir la conformité avec les plans et les délais.</p>
+    </div>
+    <div class="process-step" id="step-5">
+      <div class="step-circle">05</div>
+      <h3 class="step-title">Livraison</h3>
+      <p class="step-desc">Réception des travaux, levée des réserves et remise des clés accompagnée du dossier complet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="120">0</div>
+      <p class="stat-label">Projets livrés</p>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="15">0</div>
+      <p class="stat-label">Années d'expérience</p>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="98">0</div>
+      <p class="stat-label">Clients satisfaits (%)</p>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="8">0</div>
+      <p class="stat-label">Pays en Afrique</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonials-header">
+    <p class="section-label reveal">Témoignages</p>
+    <h2 class="section-title reveal">Ce que disent nos clients</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Confort Seven Architecture et Design a transformé notre vision en une réalité qui dépasse toutes nos attentes. Le mariage entre modernité et références culturelles africaines est simplement remarquable.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">K</div>
+        <div>
+          <p class="author-name">Kouassi Adjoua</p>
+          <p class="author-role">Directrice, Groupe Adjoua Invest</p>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Le suivi de chantier a été exemplaire. Chaque étape était parfaitement coordonnée et le résultat final reflète un haut niveau d'expertise et de professionnalisme.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">T</div>
+        <div>
+          <p class="author-name">Traoré Ibrahim</p>
+          <p class="author-role">PDG, TI Constructions</p>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Notre siège social à Plateau est devenu une référence architecturale dans le quartier. Confort Seven a su créer un espace qui inspire confiance et innovation.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">D</div>
+        <div>
+          <p class="author-name">Diabaté Fatoumata</p>
+          <p class="author-role">Fondatrice, FinTech Africa</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div style="max-width:900px; margin-bottom:3rem;">
+    <p class="section-label reveal">Parlons de votre projet</p>
+    <h2 class="section-title reveal">Démarrons ensemble</h2>
+    <p class="section-sub reveal">Partagez votre vision avec nous. Notre équipe vous répondra dans les 24 heures.</p>
+  </div>
+  <div class="contact-grid">
+    <form id="contactForm" class="reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">Prénom</label>
+          <input type="text" id="firstName" name="firstName" placeholder="Kofi" required />
+        </div>
+        <div class="form-group">
+          <label for="lastName">Nom</label>
+          <input type="text" id="lastName" name="lastName" placeholder="Mensah" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="kofi@exemple.ci" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Téléphone</label>
+        <input type="tel" id="phone" name="phone" placeholder="+225 07 00 00 00 00" />
+      </div>
+      <div class="form-group">
+        <label for="projectType">Type de projet</label>
+        <select id="projectType" name="projectType">
+          <option value="">Sélectionner…</option>
+          <option value="Résidentiel">Résidentiel</option>
+          <option value="Commercial">Commercial</option>
+          <option value="Institutionnel">Institutionnel</option>
+          <option value="Rénovation">Rénovation</option>
+          <option value="Urbanisme">Urbanisme</option>
+          <option value="Autre">Autre</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Décrivez votre projet, sa localisation, votre budget indicatif…"></textarea>
+      </div>
+      <button type="submit" class="submit-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        Envoyer via WhatsApp
+      </button>
+    </form>
+    <div class="contact-info reveal">
+      <h3 class="contact-info-title">Nos coordonnées</h3>
+      <p class="contact-info-sub">Nous sommes disponibles du lundi au vendredi, de 8h à 18h, et le samedi sur rendez-vous.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <strong>Adresse</strong>
+            <span>Cocody Danga, Abidjan<br>Côte d'Ivoire</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l1.99-1.99a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <strong>Téléphone</strong>
+            <span>+225 07 00 00 00 00</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <strong>Email</strong>
+            <span>contact@archetypafrica.com</span>
+          </div>
+        </div>
+      </div>
+      <a href="https://wa.me/225XXXXXXXXXX" class="whatsapp-block" target="_blank" rel="noopener">
+        <div class="whatsapp-block-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        </div>
+        <div>
+          <p class="whatsapp-block-title">Discuter sur WhatsApp</p>
+          <p class="whatsapp-block-sub">Réponse rapide garantie</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#hero" class="nav-logo">Confort Seven<span>.</span></a>
+      <p>Cabinet d'architecture de référence à Abidjan. Concevoir des espaces durables qui honorent l'identité africaine.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#about">À Propos</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projets</a></li>
+        <li><a href="#process">Processus</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Architecture Résidentielle</a></li>
+        <li><a href="#services">Architecture Commerciale</a></li>
+        <li><a href="#services">Projets Institutionnels</a></li>
+        <li><a href="#services">Design Intérieur</a></li>
+        <li><a href="#services">Urbanisme</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+22507000000000">+225 07 00 00 00 00</a></li>
+        <li><a href="mailto:contact@archetypafrica.com">contact@archetypafrica.com</a></li>
+        <li><a href="#contact">Cocody Danga, Abidjan</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Confort Seven Architecture et Design. Tous droits réservés.</p>
+    <div class="footer-social">
+      <a href="#" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="#" aria-label="LinkedIn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="#" aria-label="Facebook">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/225XXXXXXXXXX" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+  const WA_NUMBER = '225XXXXXXXXXX';
+
+  /* ── NAV SCROLL ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* ── BURGER MENU ── */
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      burger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ── SCROLL REVEAL ── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  /* ── PROCESS STEP ACTIVATION ── */
+  const steps = document.querySelectorAll('.process-step');
+  const stepObserver = new IntersectionObserver((entries) => {
+    if (entries.some(e => e.isIntersecting)) {
+      let delay = 0;
+      steps.forEach(step => {
+        setTimeout(() => step.classList.add('active'), delay);
+        delay += 300;
+      });
+      stepObserver.disconnect();
+    }
+  }, { threshold: 0.3 });
+  const processSection = document.getElementById('process');
+  if (processSection) stepObserver.observe(processSection);
+
+  /* ── COUNTER ANIMATION ── */
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const duration = 1800;
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target);
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(tick);
+  }
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('[data-target]').forEach(animateCounter);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  const statsSection = document.getElementById('stats');
+  if (statsSection) counterObserver.observe(statsSection);
+
+  /* ── PORTFOLIO FILTERS ── */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      projectCards.forEach(card => {
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  /* ── CONTACT FORM → WHATSAPP ── */
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const projectType = document.getElementById('projectType').value;
+    const message = document.getElementById('message').value.trim();
+
+    const text = [
+      `Bonjour Confort Seven Architecture et Design,`,
+      ``,
+      `Nom : ${firstName} ${lastName}`,
+      email ? `Email : ${email}` : '',
+      phone ? `Téléphone : ${phone}` : '',
+      projectType ? `Type de projet : ${projectType}` : '',
+      message ? `\nMessage :\n${message}` : '',
+    ].filter(Boolean).join('\n');
+
+    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank', 'noopener');
+  });
+
+  /* ── SMOOTH SCROLL FOR ANCHOR LINKS ── */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
