@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AGENCE IMMOBILIERE LUMIERE — Agence immobilière à Abidjan | Vente, location &amp; gestion</title>
+<title>L'ASSISTANCE IMMOBILIER — Agence immobilière à Abidjan | Vente, location &amp; gestion</title>
 <meta name="description" content="Votre partenaire immobilier de confiance à Abidjan. Vente, location résidentielle et commerciale, gestion locative et conseil dans 15 quartiers. +500 biens vendus, +10 ans d’expérience.">
 <meta name="keywords" content="immobilier Abidjan, villa Cocody, appartement Marcory, location Plateau, agence immobilière Côte d’Ivoire">
 <meta property="og:type" content="website">
-<meta property="og:title" content="AGENCE IMMOBILIERE LUMIERE — Agence immobilière à Abidjan">
+<meta property="og:title" content="L'ASSISTANCE IMMOBILIER — Agence immobilière à Abidjan">
 <meta property="og:description" content="Votre partenaire immobilier de confiance à Abidjan. Vente, location, gestion locative et conseil.">
 <meta property="og:locale" content="fr_FR">
-<meta property="og:site_name" content="AGENCE IMMOBILIERE LUMIERE">
+<meta property="og:site_name" content="L'ASSISTANCE IMMOBILIER">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -472,7 +472,7 @@
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
-    <a href="#hero" class="logo"><span class="mark" data-agency-initial="">L</span><span data-agency-name="">AGENCE IMMOBILIERE LUMIERE</span></a>
+    <a href="#hero" class="logo"><span class="mark" data-agency-initial="">L</span><span data-agency-name="">L'ASSISTANCE IMMOBILIER</span></a>
     <nav class="nav-links">
       <a href="#services">Services</a>
       <a href="#biens">Nos biens</a>
@@ -492,7 +492,7 @@
 <!-- mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
   <div class="mm-top">
-    <span class="logo"><span class="mark" data-agency-initial="">L</span><span data-agency-name="">AGENCE IMMOBILIERE LUMIERE</span></span>
+    <span class="logo"><span class="mark" data-agency-initial="">L</span><span data-agency-name="">L'ASSISTANCE IMMOBILIER</span></span>
     <button class="mm-close" id="mmClose" aria-label="Fermer">✕</button>
   </div>
   <nav class="mm-links">
@@ -870,7 +870,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <span class="logo"><span class="mark" data-agency-initial="">L</span><span data-agency-name="">AGENCE IMMOBILIERE LUMIERE</span></span>
+        <span class="logo"><span class="mark" data-agency-initial="">L</span><span data-agency-name="">L'ASSISTANCE IMMOBILIER</span></span>
         <p data-slogan="">Votre partenaire immobilier de confiance à Abidjan. Vente, location et gestion locative.</p>
         <div class="socials">
           <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v7h3v-7h2.5l.5-3H14V9.5c0-.3.2-.5.5-.5z"></path></svg></a>
@@ -902,7 +902,7 @@
       </div>
     </div>
     <div class="foot-bottom">
-      <div>© <span id="year">2026</span> <span data-agency-name="">AGENCE IMMOBILIERE LUMIERE</span>. Tous droits réservés.</div>
+      <div>© <span id="year">2026</span> <span data-agency-name="">L'ASSISTANCE IMMOBILIER</span>. Tous droits réservés.</div>
       <div class="legal">
         <a href="#">Mentions légales</a>
         <a href="#">Politique de confidentialité</a>
@@ -951,7 +951,7 @@
     <div class="tw-group tw-text">
       <h4>Identité</h4>
       <label>Nom de l'agence</label>
-      <input type="text" id="tw-name" placeholder="AGENCE IMMOBILIERE LUMIERE">
+      <input type="text" id="tw-name" placeholder="L'ASSISTANCE IMMOBILIER">
     </div>
     <div class="tw-group">
       <h4>Couleur marine (principale)</h4>
@@ -990,7 +990,7 @@
 <script>
   /* ===== Tweakable defaults (host-persisted) ===== */
   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-    "agencyName": "AGENCE IMMOBILIERE LUMIERE",
+    "agencyName": "L'ASSISTANCE IMMOBILIER",
     "navy": "#1B2A4A",
     "gold": "#C8A951",
     "headingFont": "'Playfair Display', serif",
@@ -1019,7 +1019,7 @@
     root.style.setProperty('--gold-soft', shade(state.gold,28));
     root.style.setProperty('--font-head', state.headingFont);
     // agency name + initial
-    const nm = state.agencyName || "AGENCE IMMOBILIERE LUMIERE";
+    const nm = state.agencyName || "L'ASSISTANCE IMMOBILIER";
     document.querySelectorAll('[data-agency-name]').forEach(e=>e.textContent=nm);
     const initial = (nm.replace(/[^A-Za-zÀ-ÿ]/g,'').charAt(0) || 'A').toUpperCase();
     document.querySelectorAll('[data-agency-initial]').forEach(e=>e.textContent=initial);
@@ -1038,7 +1038,7 @@
     document.querySelectorAll('#tw-font button').forEach(b=>b.classList.toggle('active',b.dataset.font===state.headingFont));
     document.querySelectorAll('#tw-cols button').forEach(b=>b.classList.toggle('active',+b.dataset.cols===state.gridCols));
     document.getElementById('tw-search').classList.toggle('on',state.showSearch);
-    const nameI=document.getElementById('tw-name'); if(document.activeElement!==nameI) nameI.value=state.agencyName==="AGENCE IMMOBILIERE LUMIERE"?'':state.agencyName;
+    const nameI=document.getElementById('tw-name'); if(document.activeElement!==nameI) nameI.value=state.agencyName==="L'ASSISTANCE IMMOBILIER"?'':state.agencyName;
     const ctaI=document.getElementById('tw-cta'); if(document.activeElement!==ctaI) ctaI.value=state.ctaPrimary;
   }
 
@@ -1064,7 +1064,7 @@
   document.querySelectorAll('#tw-font button').forEach(b=>b.addEventListener('click',()=>persist({headingFont:b.dataset.font})));
   document.querySelectorAll('#tw-cols button').forEach(b=>b.addEventListener('click',()=>persist({gridCols:+b.dataset.cols})));
   document.getElementById('tw-search').addEventListener('click',()=>persist({showSearch:!state.showSearch}));
-  document.getElementById('tw-name').addEventListener('input',e=>persist({agencyName:e.target.value||"AGENCE IMMOBILIERE LUMIERE"}));
+  document.getElementById('tw-name').addEventListener('input',e=>persist({agencyName:e.target.value||"L'ASSISTANCE IMMOBILIER"}));
   document.getElementById('tw-cta').addEventListener('input',e=>persist({ctaPrimary:e.target.value||'Voir nos biens'}));
 
   /* ===== Tweaks host protocol ===== */
@@ -1194,10 +1194,10 @@
 
     // description générée
     const sale=badge.classList.contains('sell');
-    mDesc.textContent=`${title} ${sale?'à la vente':'en location'}, idéalement situé${/villa|duplex|studio|local/i.test(title)?'':'e'} à ${loc.replace('📍','').trim()}. Un bien soigneusement sélectionné par AGENCE IMMOBILIERE LUMIERE. Contactez-nous pour organiser une visite, obtenir le dossier complet et toutes les informations sur les conditions ${sale?'d\'achat':'de location'}.`;
+    mDesc.textContent=`${title} ${sale?'à la vente':'en location'}, idéalement situé${/villa|duplex|studio|local/i.test(title)?'':'e'} à ${loc.replace('📍','').trim()}. Un bien soigneusement sélectionné par L'ASSISTANCE IMMOBILIER. Contactez-nous pour organiser une visite, obtenir le dossier complet et toutes les informations sur les conditions ${sale?'d\'achat':'de location'}.`;
 
     // lien WhatsApp pré-rempli
-    const waText=`Bonjour AGENCE IMMOBILIERE LUMIERE, je souhaite plus de détails et une visite pour : ${title} (${loc.replace('📍','').trim()}) — ${card.querySelector('.price').textContent.trim()}. Est-il toujours disponible ?`;
+    const waText=`Bonjour L'ASSISTANCE IMMOBILIER, je souhaite plus de détails et une visite pour : ${title} (${loc.replace('📍','').trim()}) — ${card.querySelector('.price').textContent.trim()}. Est-il toujours disponible ?`;
     mWa.href=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waText)}`;
 
     modal.classList.add('open');
