@@ -80,6 +80,10 @@ npx vercel --yes --name [nom-du-prospect]
 | `immo-doks` | https://immo-doks.vercel.app | immo |
 | `lassistance-immobilier` | https://lassistance-immobilier.vercel.app | immo |
 | `a-plus-a-architecture-adou` | https://a-plus-a-architecture-adou.vercel.app | archi |
+| `regis-immobilier` | https://regis-immobilier.vercel.app | immo |
+| `king-immobilier` | https://king-immobilier.vercel.app | immo |
+| `r2i-immobilier` | https://r2i-immobilier.vercel.app | immo |
+| `source-immobilier` | https://source-immobilier.vercel.app | immo |
 
 ## Vercel config
 
