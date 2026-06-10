@@ -123,7 +123,7 @@ Un seul bloc à modifier — le JS propage les valeurs partout automatiquement.
 | `r2i-immobilier` | https://r2i-immobilier.vercel.app | immo |
 | `source-immobilier` | https://source-immobilier.vercel.app | immo |
 | `archetyp-africa` | https://archetyp-africa.vercel.app | archi |
-| `cj2a-adou` | https://cj2a-adou.vercel.app | juridique |
+| `cj2a-adou` | https://cj2a-adou-seven.vercel.app | juridique |
 
 ## Vercel config
 
