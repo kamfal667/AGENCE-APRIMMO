@@ -127,7 +127,7 @@ Un seul bloc à modifier — le JS propage les valeurs partout automatiquement.
 | `dso-architect` | https://dso-architect.vercel.app | archi |
 | `prest-company` | https://prest-company.vercel.app | immo |
 | `homestec` | https://homestec.vercel.app | immo |
-| `dna-architects` | https://dna-architects.vercel.app | archi (déploiement en attente) |
+| `dna-architects` | https://dna-architects-three.vercel.app | archi |
 
 ## Vercel config
 
