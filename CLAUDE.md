@@ -12,6 +12,7 @@ A multi-template static website system for prospects in Abidjan (Côte d'Ivoire)
 |---|---|---|
 | `templates/template-immo.html` | Immobilier | AGENCE IMMOBILIERE LUMIERE |
 | `templates/template-archi.html` | Architecture & Design | Confort Seven |
+| `templates/template-juridique.html` | Cabinet juridique / Avocat | Cabinet CJ2A — Me ADOU et Associés |
 
 ## Branch & deploy workflow
 
@@ -22,9 +23,11 @@ git checkout main && git pull origin main
 git checkout -b [nom-du-prospect]
 
 # Copier le bon template en index.html
-cp templates/template-immo.html index.html   # pour un prospect immobilier
+cp templates/template-immo.html index.html      # pour un prospect immobilier
 # OU
-cp templates/template-archi.html index.html  # pour un prospect architecture
+cp templates/template-archi.html index.html     # pour un prospect architecture
+# OU
+cp templates/template-juridique.html index.html # pour un cabinet juridique / avocat
 
 # Modifier index.html (voir points de personnalisation ci-dessous)
 git add index.html
@@ -72,6 +75,41 @@ npx vercel --yes --name [nom-du-prospect]
 | Adresse | `Cocody Danga, Abidjan` (lignes ~1291, ~1358) |
 | Couleur accent (cuivre) | `--cuivre:#B87333` dans `:root` (ligne ~19) |
 
+## Points de personnalisation — template-juridique.html
+
+**Identité — remplacements texte (~4 occurrences chacun) :**
+
+| Quoi | Valeur à remplacer |
+|---|---|
+| Sigle court | `CJ2A` (title, hero, footer) |
+| Nom complet | `Cabinet CJ2A — Me ADOU et Associés` (title, about, footer) |
+| Nom nav/logo | `ADOU et Associés` (lignes ~352 et ~560) |
+| Nom affiché avocat | `Maître Adou` (ligne ~397, hero crest) |
+| Mention barreau | `Cabinet inscrit au Barreau de Côte d'Ivoire` (footer) |
+
+**Contact — bloc CONFIG JS centralisé (ligne ~591) :**
+
+```js
+var CONFIG = {
+  whatsapp: "225XXXXXXXXXX",          // numéro WhatsApp sans +
+  telephone: "+225 XX XX XX XX XX",
+  email: "contact@cj2a-avocats.ci",
+  adresse: "Cocody, Abidjan — Côte d'Ivoire",
+  messageWhatsApp: "..."
+};
+```
+
+Un seul bloc à modifier — le JS propage les valeurs partout automatiquement.
+
+**Stats (lignes ~407-410) :** `+15` ans · `+500` dossiers · `+200` clients · `95%` satisfaction
+
+**Couleurs :**
+
+| Variable | Valeur |
+|---|---|
+| Couleur principale | `--green: #1F5C49` dans `:root` (ligne ~149) |
+| Accent or | `--gold: #9B8A4E` dans `:root` (ligne ~153) |
+
 ## Prospects déployés
 
 | Branche | URL Vercel | Template |
@@ -80,6 +118,12 @@ npx vercel --yes --name [nom-du-prospect]
 | `immo-doks` | https://immo-doks.vercel.app | immo |
 | `lassistance-immobilier` | https://lassistance-immobilier.vercel.app | immo |
 | `a-plus-a-architecture-adou` | https://a-plus-a-architecture-adou.vercel.app | archi |
+| `regis-immobilier` | https://regis-immobilier.vercel.app | immo |
+| `king-immobilier` | https://king-immobilier.vercel.app | immo |
+| `r2i-immobilier` | https://r2i-immobilier.vercel.app | immo |
+| `source-immobilier` | https://source-immobilier.vercel.app | immo |
+| `archetyp-africa` | https://archetyp-africa.vercel.app | archi |
+| `cj2a-adou` | https://cj2a-adou.vercel.app | juridique |
 
 ## Vercel config
 
