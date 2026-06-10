@@ -124,6 +124,8 @@ Un seul bloc à modifier — le JS propage les valeurs partout automatiquement.
 | `source-immobilier` | https://source-immobilier.vercel.app | immo |
 | `archetyp-africa` | https://archetyp-africa.vercel.app | archi |
 | `cj2a-adou` | https://cj2a-adou.vercel.app | juridique |
+| `dso-architect` | https://dso-architect.vercel.app | archi |
+| `prest-company` | https://prest-company.vercel.app | immo |
 
 ## Vercel config
 
