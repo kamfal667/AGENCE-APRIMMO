@@ -173,6 +173,7 @@ Un seul bloc à modifier — le JS propage les valeurs partout automatiquement.
 | `dreams-immobilier` | https://dreams-immobilier.vercel.app | immo |
 | `adou-architecture` | https://adou-architecture.vercel.app | archi (portfolio complet) |
 | `solex-sas` | https://solex-sas.vercel.app | compta |
+| `ascg-international` | https://ascg-international.vercel.app | compta |
 
 ## Vercel config
 
