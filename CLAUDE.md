@@ -13,6 +13,7 @@ A multi-template static website system for prospects in Abidjan (Côte d'Ivoire)
 | `templates/template-immo.html` | Immobilier | AGENCE IMMOBILIERE LUMIERE |
 | `templates/template-archi.html` | Architecture & Design | Confort Seven |
 | `templates/template-juridique.html` | Cabinet juridique / Avocat | Cabinet CJ2A — Me ADOU et Associés |
+| `templates/template-compta.html` | Cabinet comptable / Expert-comptable | [Nom du Cabinet] |
 
 ## Branch & deploy workflow
 
@@ -28,6 +29,8 @@ cp templates/template-immo.html index.html      # pour un prospect immobilier
 cp templates/template-archi.html index.html     # pour un prospect architecture
 # OU
 cp templates/template-juridique.html index.html # pour un cabinet juridique / avocat
+# OU
+cp templates/template-compta.html index.html    # pour un cabinet comptable
 
 # Modifier index.html (voir points de personnalisation ci-dessous)
 git add index.html
@@ -110,6 +113,42 @@ Un seul bloc à modifier — le JS propage les valeurs partout automatiquement.
 | Couleur principale | `--green: #1F5C49` dans `:root` (ligne ~149) |
 | Accent or | `--gold: #9B8A4E` dans `:root` (ligne ~153) |
 
+## Points de personnalisation — template-compta.html
+
+**Système de props centralisé** — toutes les valeurs sont dans le bloc `data-props` (ligne ~824 du fichier bundlé). Un seul endroit à modifier, le JS propage partout automatiquement.
+
+| Prop | Valeur par défaut | Quoi changer |
+|---|---|---|
+| `cabinetName` | `[Nom du Cabinet]` | Nom complet du cabinet (~5 occurrences : title, og, nav, about, footer) |
+| `expertName` | `[Expert-Comptable]` | Nom du directeur / expert-comptable (section À propos) |
+| `phone` | `+225 07 00 00 00 00` | Téléphone affiché (section contact + footer) |
+| `email` | `contact@votrecabinet.ci` | Email de contact |
+| `whatsapp` | `2250700000000` | Numéro WhatsApp sans `+` (génère le lien `wa.me/…`) |
+
+**Méthode de modification :** rechercher et remplacer directement dans le HTML bundlé les valeurs par défaut :
+- `[Nom du Cabinet]` → nom du prospect
+- `[Expert-Comptable]` → nom de l'expert
+- `+225 07 00 00 00 00` → téléphone réel
+- `contact@votrecabinet.ci` → email réel
+- `2250700000000` → numéro WhatsApp réel
+
+**Stats codées en dur** (lignes ~609–622 du template extrait) :
+
+| Stat | Valeur | Label |
+|---|---|---|
+| `data-count="15"` | `+15` | ans d'expérience |
+| `data-count="200"` | `+200` | entreprises accompagnées |
+| `data-count="1200"` | `+1 200` | déclarations traitées / an |
+| `data-count="98"` | `98%` | de clients satisfaits |
+
+**Couleurs (inline dans le HTML, pas de variables CSS) :**
+
+| Rôle | Couleur |
+|---|---|
+| Bleu marine (fond hero, titres) | `#1B3A6B` |
+| Vert (CTA, accent) | `#1A7A4A` |
+| Or (stats, détails) | `#C8A951` |
+
 ## Prospects déployés
 
 | Branche | URL Vercel | Template |
@@ -123,7 +162,16 @@ Un seul bloc à modifier — le JS propage les valeurs partout automatiquement.
 | `r2i-immobilier` | https://r2i-immobilier.vercel.app | immo |
 | `source-immobilier` | https://source-immobilier.vercel.app | immo |
 | `archetyp-africa` | https://archetyp-africa.vercel.app | archi |
-| `cj2a-adou` | https://cj2a-adou.vercel.app | juridique |
+| `cj2a-adou` | https://cj2a-adou-seven.vercel.app | juridique |
+| `dso-architect` | https://dso-architect.vercel.app | archi |
+| `prest-company` | https://prest-company.vercel.app | immo |
+| `homestec` | https://homestec.vercel.app | immo |
+| `dna-architects` | https://dna-architects-three.vercel.app | archi |
+| `aca-architectes` | https://aca-architectes.vercel.app | archi |
+| `success-agence` | https://success-agence.vercel.app | immo |
+| `generale-ivoire` | https://generale-ivoire.vercel.app | immo |
+| `dreams-immobilier` | https://dreams-immobilier.vercel.app | immo |
+| `adou-architecture` | https://adou-architecture.vercel.app | archi (portfolio complet) |
 
 ## Vercel config
 
