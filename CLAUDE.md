@@ -172,6 +172,7 @@ Un seul bloc à modifier — le JS propage les valeurs partout automatiquement.
 | `generale-ivoire` | https://generale-ivoire.vercel.app | immo |
 | `dreams-immobilier` | https://dreams-immobilier.vercel.app | immo |
 | `adou-architecture` | https://adou-architecture.vercel.app | archi (portfolio complet) |
+| `solex-sas` | https://solex-sas.vercel.app | compta |
 
 ## Vercel config
 
