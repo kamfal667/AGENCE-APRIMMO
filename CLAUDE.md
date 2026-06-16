@@ -14,6 +14,7 @@ A multi-template static website system for prospects in Abidjan (Côte d'Ivoire)
 | `templates/template-archi.html` | Architecture & Design | Confort Seven |
 | `templates/template-juridique.html` | Cabinet juridique / Avocat | Cabinet CJ2A — Me ADOU et Associés |
 | `templates/template-compta.html` | Cabinet comptable / Expert-comptable | [Nom du Cabinet] |
+| `templates/template-voyage.html` | Agence de voyage | [Nom de l'Agence] |
 
 ## Branch & deploy workflow
 
@@ -31,6 +32,8 @@ cp templates/template-archi.html index.html     # pour un prospect architecture
 cp templates/template-juridique.html index.html # pour un cabinet juridique / avocat
 # OU
 cp templates/template-compta.html index.html    # pour un cabinet comptable
+# OU
+cp templates/template-voyage.html index.html   # pour une agence de voyage
 
 # Modifier index.html (voir points de personnalisation ci-dessous)
 git add index.html
@@ -149,6 +152,44 @@ Un seul bloc à modifier — le JS propage les valeurs partout automatiquement.
 | Vert (CTA, accent) | `#1A7A4A` |
 | Or (stats, détails) | `#C8A951` |
 
+## Points de personnalisation — template-voyage.html
+
+**Bloc CONFIG JS centralisé (ligne ~1074 du template) :**
+
+```js
+const AGENCE = {
+  nom: "[Nom de l'Agence]",
+  whatsapp: "225XXXXXXXXXX",     // numéro WhatsApp sans + ni espaces
+  tel: "+225 XX XX XX XX XX",
+  email: "contact@votreagence.ci",
+  adresse: "Abidjan, Côte d'Ivoire"
+};
+```
+
+Un seul bloc à modifier — le JS propage `nom`, `adresse`, liens WhatsApp et contact partout automatiquement.
+
+**Couleurs (variables CSS dans `:root`) :**
+
+| Variable | Valeur | Rôle |
+|---|---|---|
+| `--ocean` | `#0077B6` | Couleur principale (bleu océan) |
+| `--orange` | `#FF8C42` | CTA et boutons d'action |
+| `--gold` | `#FFB627` | Accents et détails |
+| `--navy` | `#023E73` | Fond hero, nav scrollée |
+
+**Stats codées en dur (ligne ~1135) :**
+
+| Prop `n` | Affichage | Label |
+|---|---|---|
+| `5000` | `+5 000` | Voyageurs satisfaits |
+| `50` | `+50` | Destinations couvertes |
+| `8` | `+8` | Ans d'expérience |
+| `24` | `24h/24` | Assistance 7j/7 |
+
+**Destinations (tableau `destinations` ligne ~1097) :** 8 destinations par défaut (Dubaï, Istanbul, La Mecque, Paris, Bangkok, Marrakech, Le Caire, Maldives) avec prix en FCFA. Modifier directement dans le JS.
+
+**Offres spéciales (tableau `offers` ligne ~1123) :** 3 offres mises en avant. Modifier prix `old`/`now` et contenu `inc[]`.
+
 ## Prospects déployés
 
 | Branche | URL Vercel | Template |
@@ -175,6 +216,7 @@ Un seul bloc à modifier — le JS propage les valeurs partout automatiquement.
 | `solex-sas` | https://solex-sas.vercel.app | compta |
 | `ascg-international` | https://ascg-international.vercel.app | compta |
 | `caliel-consulting` | https://caliel-consulting.vercel.app | compta |
+| `soumko-voyage` | https://soumko-voyage.vercel.app | voyage |
 
 ## Vercel config
 
