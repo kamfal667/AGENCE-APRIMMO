@@ -1113,11 +1113,11 @@ document.getElementById("waFloat").setAttribute("target", "_blank");
 const destinations = [
   { flag:"🇦🇪", em:"🏙️", name:"Dubaï",     dur:"5 jours / 4 nuits", price:690000,  grad:"linear-gradient(135deg,#f6c177,#e8893f)", photo:"https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80",     promo:true },
   { flag:"🇹🇷", em:"🕌", name:"Istanbul",   dur:"6 jours / 5 nuits", price:575000,  grad:"linear-gradient(135deg,#5b8def,#9d6ed6)", photo:"https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80",  promo:false },
-  { flag:"🇸🇦", em:"🕋", name:"La Mecque",  dur:"12 jours (Omra)",   price:1150000, grad:"linear-gradient(135deg,#1f8a5b,#0f5c3a)", photo:"https://images.unsplash.com/photo-1591178024-4f71b32a3f9a?auto=format&fit=crop&w=800&q=80",    promo:false },
+  { flag:"🇸🇦", em:"🕋", name:"La Mecque",  dur:"12 jours (Omra)",   price:1150000, grad:"linear-gradient(135deg,#1f8a5b,#0f5c3a)", photo:"https://images.unsplash.com/photo-1609866351236-5dcfbf6e01f7?auto=format&fit=crop&w=800&q=80",    promo:false },
   { flag:"🇫🇷", em:"🗼", name:"Paris",      dur:"5 jours / 4 nuits", price:820000,  grad:"linear-gradient(135deg,#7b6cd6,#d98bbf)", photo:"https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80",     promo:false },
   { flag:"🇹🇭", em:"🛕", name:"Bangkok",    dur:"7 jours / 6 nuits", price:980000,  grad:"linear-gradient(135deg,#16b89a,#1f9d6b)", photo:"https://images.unsplash.com/photo-1508193638397-1c4234db14d8?auto=format&fit=crop&w=800&q=80",   promo:true },
   { flag:"🇲🇦", em:"🐫", name:"Marrakech",  dur:"4 jours / 3 nuits", price:410000,  grad:"linear-gradient(135deg,#e06a3b,#c43d2a)", photo:"https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80", promo:true },
-  { flag:"🇪🇬", em:"🏜️", name:"Le Caire",   dur:"6 jours / 5 nuits", price:560000,  grad:"linear-gradient(135deg,#d8a55f,#b9794a)", photo:"https://images.unsplash.com/photo-1539650116574-75c0f1e23196?auto=format&fit=crop&w=800&q=80",     promo:false },
+  { flag:"🇪🇬", em:"🏜️", name:"Le Caire",   dur:"6 jours / 5 nuits", price:560000,  grad:"linear-gradient(135deg,#d8a55f,#b9794a)", photo:"https://images.unsplash.com/photo-1568322445389-f64ac2515020?auto=format&fit=crop&w=800&q=80",     promo:false },
   { flag:"🇲🇻", em:"🏝️", name:"Maldives",   dur:"7 jours / 6 nuits", price:1450000, grad:"linear-gradient(135deg,#23bfe0,#0a72c4)", photo:"https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80",  promo:false }
 ];
 
@@ -1140,7 +1140,7 @@ const offers = [
   { badge:"best", label:"Meilleure offre", em:"🏙️", top:"linear-gradient(135deg,#f6c177,#e8893f)", photo:"https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80",
     name:"Escapade Dubaï VIP", dur:"5 jours / 4 nuits", inc:["Vol aller-retour inclus","Hôtel 5★ + petit-déjeuner","Visa &amp; assistance","Excursion désert + dîner"],
     old:890000, now:690000, featured:true },
-  { badge:"last", label:"Dernières places", em:"🕋", top:"linear-gradient(135deg,#1f8a5b,#0f5c3a)", photo:"https://images.unsplash.com/photo-1591178024-4f71b32a3f9a?auto=format&fit=crop&w=800&q=80",
+  { badge:"last", label:"Dernières places", em:"🕋", top:"linear-gradient(135deg,#1f8a5b,#0f5c3a)", photo:"https://images.unsplash.com/photo-1609866351236-5dcfbf6e01f7?auto=format&fit=crop&w=800&q=80",
     name:"Omra Confort", dur:"12 jours", inc:["Vol aller-retour inclus","Hôtel proche du Haram","Visa Omra inclus","Transferts + guide"],
     old:1350000, now:1150000, featured:false },
   { badge:"new", label:"Nouveau", em:"🏝️", top:"linear-gradient(135deg,#23bfe0,#0a72c4)", photo:"https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80",
@@ -1174,7 +1174,7 @@ const $ = s => document.querySelector(s);
 
 $("#destGrid").innerHTML = destinations.map((d,i) => `
   <article class="dcard reveal d${(i%4)+1}">
-    <div class="photo" style="background:${d.grad};background-image:linear-gradient(to bottom,rgba(0,0,0,.08) 0%,rgba(0,0,0,.52) 100%),url('${d.photo}');background-size:cover;background-position:center">
+    <div class="photo" style="background-image:linear-gradient(to bottom,rgba(0,0,0,.08) 0%,rgba(0,0,0,.52) 100%),url('${d.photo}'),${d.grad};background-size:cover;background-position:center">
       ${d.promo ? '<span class="badge promo pulse">PROMO</span>' : ''}
       <div class="overlay"><a class="btn btn-orange" data-wa="Bonjour, je souhaite réserver un voyage pour ${d.name} (${d.dur}). Pouvez-vous me faire un devis ?">Réserver ${d.flag}</a></div>
     </div>
@@ -1195,7 +1195,7 @@ $("#servGrid").innerHTML = services.map((s,i) => `
 
 $("#offGrid").innerHTML = offers.map((o,i) => `
   <article class="ocard reveal d${i+1} ${o.featured ? 'featured' : ''}">
-    <div class="top" style="background:${o.top};background-image:linear-gradient(to bottom,rgba(0,0,0,.12) 0%,rgba(0,0,0,.55) 100%),url('${o.photo}');background-size:cover;background-position:center">
+    <div class="top" style="background-image:linear-gradient(to bottom,rgba(0,0,0,.12) 0%,rgba(0,0,0,.55) 100%),url('${o.photo}'),${o.top};background-size:cover;background-position:center">
       <span class="o-badge ${o.badge}">${o.label}</span>
     </div>
     <div class="obody">
