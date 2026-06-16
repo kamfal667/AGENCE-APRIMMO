@@ -174,6 +174,7 @@ Un seul bloc à modifier — le JS propage les valeurs partout automatiquement.
 | `adou-architecture` | https://adou-architecture.vercel.app | archi (portfolio complet) |
 | `solex-sas` | https://solex-sas.vercel.app | compta |
 | `ascg-international` | https://ascg-international.vercel.app | compta |
+| `caliel-consulting` | https://caliel-consulting.vercel.app | compta |
 
 ## Vercel config
 
