@@ -1177,7 +1177,6 @@ $("#destGrid").innerHTML = destinations.map((d,i) => `
   <article class="dcard reveal d${(i%4)+1}">
     <div class="photo" style="background:${d.grad};background-image:linear-gradient(to bottom,rgba(0,0,0,.08) 0%,rgba(0,0,0,.52) 100%),url('${d.photo}');background-size:cover;background-position:center">
       ${d.promo ? '<span class="badge promo pulse">PROMO</span>' : ''}
-      <span class="emoji">${d.em}</span>
       <div class="overlay"><a class="btn btn-orange" data-wa="Bonjour, je souhaite réserver un voyage pour ${d.name} (${d.dur}). Pouvez-vous me faire un devis ?">Réserver ${d.flag}</a></div>
     </div>
     <div class="body">
@@ -1199,7 +1198,6 @@ $("#offGrid").innerHTML = offers.map((o,i) => `
   <article class="ocard reveal d${i+1} ${o.featured ? 'featured' : ''}">
     <div class="top" style="background:${o.top};background-image:linear-gradient(to bottom,rgba(0,0,0,.12) 0%,rgba(0,0,0,.55) 100%),url('${o.photo}');background-size:cover;background-position:center">
       <span class="o-badge ${o.badge}">${o.label}</span>
-      <span class="em">${o.em}</span>
     </div>
     <div class="obody">
       <h3>${o.name}</h3>
