@@ -1287,9 +1287,14 @@ const checkReveal = () => {
   counters.forEach(el => { if (el.getBoundingClientRect().top < cTrigger) startCount(el); });
 };
 window.addEventListener("scroll", checkReveal, { passive:true });
+document.addEventListener("scroll", checkReveal, { passive:true }); // fix iOS Safari overflow-x:hidden
 window.addEventListener("resize", checkReveal);
 checkReveal();
 setTimeout(checkReveal, 60);
+setTimeout(checkReveal, 300);
+// fallback pour mobiles où scroll n'est pas fiable au chargement
+var _ri = setInterval(checkReveal, 120);
+setTimeout(function(){ clearInterval(_ri); }, 2500);
 
 /* ============ Testimonials carousel ============ */
 (function(){
