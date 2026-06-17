@@ -744,6 +744,7 @@
     .foot-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
   }
   @media (max-width: 760px) {
+    .reveal { opacity: 1 !important; transform: none !important; }
     .nav-links, .nav .nav-cta { display: none; }
     .hamburger { display: block; }
     .search { grid-template-columns: 1fr; }
@@ -1291,6 +1292,8 @@ window.addEventListener("scroll", checkReveal, { passive:true });
 window.addEventListener("resize", checkReveal);
 checkReveal();
 setTimeout(checkReveal, 60);
+setTimeout(checkReveal, 400);
+setTimeout(checkReveal, 1200);
 
 /* ============ Testimonials carousel ============ */
 (function(){
