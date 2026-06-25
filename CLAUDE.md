@@ -217,6 +217,11 @@ Un seul bloc à modifier — le JS propage `nom`, `adresse`, liens WhatsApp et c
 | `ascg-international` | https://ascg-international.vercel.app | compta |
 | `caliel-consulting` | https://caliel-consulting.vercel.app | compta |
 | `soumko-voyage` | https://soumko-voyage.vercel.app | voyage |
+| `cabinet-amalaman-olivier` | https://cabinet-amalaman-olivier.vercel.app | avocat |
+| `gujarat-travels` | https://gujarat-travels.vercel.app | voyage |
+| `duarte-architecture` | https://duarte-architecture.vercel.app | archi |
+| `bletchi-architecture` | https://bletchi-architecture.vercel.app | archi |
+| `alis-immobilier` | https://alis-immobilier.vercel.app | immo |
 
 ## Vercel config
 
