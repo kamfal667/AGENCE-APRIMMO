@@ -1,15 +1,15 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EL BEZRI Sacha â€” Architecture & Design</title>
-  <meta name="description" content="Cabinet d'architecture de rÃ©fÃ©rence Ã  Abidjan. Projets rÃ©sidentiels, commerciaux et institutionnels en CÃ´te d'Ivoire et en Afrique de l'Ouest." />
+  <title>EL BEZRI Sacha — Architecture & Design</title>
+  <meta name="description" content="Cabinet d'architecture de référence à Abidjan. Projets résidentiels, commerciaux et institutionnels en Côte d'Ivoire et en Afrique de l'Ouest." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
   <style>
-    /* â”€â”€ RESET & BASE â”€â”€ */
+    /* ── RESET & BASE ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --noir: #0a0a0a;
@@ -37,7 +37,7 @@
     ul { list-style: none; }
     button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
-    /* â”€â”€ NAV â”€â”€ */
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -137,7 +137,7 @@
     }
     .mobile-menu a:hover { color: var(--cuivre); }
 
-    /* â”€â”€ REVEAL ANIMATIONS â”€â”€ */
+    /* ── REVEAL ANIMATIONS ── */
     .reveal {
       opacity: 0;
       transform: translateY(32px);
@@ -160,7 +160,7 @@
     }
     .reveal-right.visible { opacity: 1; transform: translateX(0); }
 
-    /* â”€â”€ SECTION COMMON â”€â”€ */
+    /* ── SECTION COMMON ── */
     section { padding: 7rem 5%; }
     .section-label {
       font-size: 0.72rem;
@@ -184,7 +184,7 @@
       line-height: 1.75;
     }
 
-    /* â”€â”€ HERO â”€â”€ */
+    /* ── HERO ── */
     #hero {
       position: relative;
       min-height: 100vh;
@@ -284,7 +284,7 @@
       background: rgba(255,255,255,0.3);
     }
 
-    /* â”€â”€ ABOUT â”€â”€ */
+    /* ── ABOUT ── */
     #about {
       background: var(--blanc);
       display: grid;
@@ -376,7 +376,7 @@
       color: var(--gris);
     }
 
-    /* â”€â”€ SERVICES â”€â”€ */
+    /* ── SERVICES ── */
     #services { background: var(--gris-clair); }
     .services-header {
       display: grid;
@@ -434,7 +434,7 @@
       line-height: 1.7;
     }
 
-    /* â”€â”€ PROJECTS â”€â”€ */
+    /* ── PROJECTS ── */
     #projects { background: var(--blanc); }
     .projects-header {
       display: flex;
@@ -513,7 +513,7 @@
       color: var(--gris);
     }
 
-    /* â”€â”€ PROCESS â”€â”€ */
+    /* ── PROCESS ── */
     #process { background: var(--noir); color: var(--blanc); }
     #process .section-title { color: var(--blanc); }
     #process .section-sub { color: rgba(255,255,255,0.55); }
@@ -572,7 +572,7 @@
       line-height: 1.7;
     }
 
-    /* â”€â”€ STATS â”€â”€ */
+    /* ── STATS ── */
     #stats { background: var(--cuivre); padding: 5rem 5%; }
     .stats-grid {
       display: grid;
@@ -595,7 +595,7 @@
       opacity: 0.8;
     }
 
-    /* â”€â”€ TESTIMONIALS â”€â”€ */
+    /* ── TESTIMONIALS ── */
     #testimonials { background: var(--gris-clair); }
     .testimonials-header { text-align: center; margin-bottom: 4rem; }
     .testimonials-grid {
@@ -654,7 +654,7 @@
     }
     .star { color: var(--cuivre); font-size: 0.9rem; }
 
-    /* â”€â”€ CONTACT â”€â”€ */
+    /* ── CONTACT ── */
     #contact { background: var(--blanc); }
     .contact-grid {
       display: grid;
@@ -767,7 +767,7 @@
       opacity: 0.85;
     }
 
-    /* â”€â”€ FOOTER â”€â”€ */
+    /* ── FOOTER ── */
     footer {
       background: var(--noir);
       color: rgba(255,255,255,0.55);
@@ -820,7 +820,7 @@
     }
     .footer-social a:hover { border-color: var(--cuivre); color: var(--cuivre); }
 
-    /* â”€â”€ FLOATING WHATSAPP â”€â”€ */
+    /* ── FLOATING WHATSAPP ── */
     .wa-float {
       position: fixed;
       bottom: 2rem; right: 2rem;
@@ -842,7 +842,7 @@
     }
     .wa-float svg { width: 28px; height: 28px; }
 
-    /* â”€â”€ RESPONSIVE â”€â”€ */
+    /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       #about { grid-template-columns: 1fr; gap: 4rem; }
       .about-visual { height: 380px; }
@@ -880,7 +880,7 @@
 <nav id="navbar">
   <a href="#hero" class="nav-logo">EL BEZRI Sacha<span>.</span></a>
   <ul class="nav-links">
-    <li><a href="#about">Ã€ Propos</a></li>
+    <li><a href="#about">À Propos</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#projects">Projets</a></li>
     <li><a href="#process">Processus</a></li>
@@ -893,7 +893,7 @@
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#about" class="mobile-link">Ã€ Propos</a>
+  <a href="#about" class="mobile-link">À Propos</a>
   <a href="#services" class="mobile-link">Services</a>
   <a href="#projects" class="mobile-link">Projets</a>
   <a href="#process" class="mobile-link">Processus</a>
@@ -906,26 +906,26 @@
     <img class="hero-bg-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=80&auto=format&fit=crop" alt="" />
   </div>
   <div class="hero-content reveal">
-    <p class="hero-eyebrow">Cabinet d'Architecture â€” Abidjan, CÃ´te d'Ivoire</p>
+    <p class="hero-eyebrow">Cabinet d'Architecture — Abidjan, Côte d'Ivoire</p>
     <h1 class="hero-title">
       Concevoir<br>
       l'Afrique de<br>
       <em>demain</em>
     </h1>
     <p class="hero-sub">
-      Architecture contemporaine ancrÃ©e dans l'identitÃ© africaine. Chaque espace raconte une histoire, chaque projet transforme un territoire.
+      Architecture contemporaine ancrée dans l'identité africaine. Chaque espace raconte une histoire, chaque projet transforme un territoire.
     </p>
     <div class="hero-actions">
       <a href="#projects" class="btn-primary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         Voir nos projets
       </a>
-      <a href="#contact" class="btn-outline">DÃ©marrer un projet</a>
+      <a href="#contact" class="btn-outline">Démarrer un projet</a>
     </div>
   </div>
   <div class="hero-scroll" aria-hidden="true">
     <div class="hero-scroll-line"></div>
-    <span>DÃ©couvrir</span>
+    <span>Découvrir</span>
   </div>
 </section>
 
@@ -936,18 +936,18 @@
       <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=80&auto=format&fit=crop" alt="Architecture contemporaine africaine" />
     </div>
     <div class="about-img-accent">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80&auto=format&fit=crop" alt="DÃ©tail architectural" />
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80&auto=format&fit=crop" alt="Détail architectural" />
     </div>
     <div class="about-badge">
       <div class="about-badge-num">15+</div>
-      <div class="about-badge-txt">AnnÃ©es<br>d'expÃ©rience</div>
+      <div class="about-badge-txt">Années<br>d'expérience</div>
     </div>
   </div>
   <div class="about-text reveal-right">
     <p class="section-label">Notre histoire</p>
     <h2 class="section-title">Une vision africaine de l'architecture</h2>
     <p class="section-sub">
-      FondÃ© Ã  Abidjan, EL BEZRI Sacha Architecture et Design conÃ§oit des espaces qui dialoguent avec leur environnement culturel et climatique. Notre approche fusionne les techniques contemporaines avec l'hÃ©ritage architectural de l'Afrique de l'Ouest.
+      Fondé à Abidjan, EL BEZRI Sacha Architecture et Design conçoit des espaces qui dialoguent avec leur environnement culturel et climatique. Notre approche fusionne les techniques contemporaines avec l'héritage architectural de l'Afrique de l'Ouest.
     </p>
     <div class="about-values">
       <div class="about-value">
@@ -956,7 +956,7 @@
         </div>
         <div class="about-value-text">
           <strong>Excellence conceptuelle</strong>
-          <span>Design rigoureux portÃ© par une recherche permanente sur l'habitat africain contemporain.</span>
+          <span>Design rigoureux porté par une recherche permanente sur l'habitat africain contemporain.</span>
         </div>
       </div>
       <div class="about-value">
@@ -964,8 +964,8 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <div class="about-value-text">
-          <strong>DurabilitÃ© & contexte</strong>
-          <span>MatÃ©riaux locaux, ventilation naturelle, adaptation au climat tropical ivoirien.</span>
+          <strong>Durabilité & contexte</strong>
+          <span>Matériaux locaux, ventilation naturelle, adaptation au climat tropical ivoirien.</span>
         </div>
       </div>
       <div class="about-value">
@@ -974,7 +974,7 @@
         </div>
         <div class="about-value-text">
           <strong>Collaboration profonde</strong>
-          <span>Chaque client est un partenaire â€” nous concevons ensemble, nous construisons ensemble.</span>
+          <span>Chaque client est un partenaire — nous concevons ensemble, nous construisons ensemble.</span>
         </div>
       </div>
     </div>
@@ -988,7 +988,7 @@
       <p class="section-label">Ce que nous faisons</p>
       <h2 class="section-title">Nos expertises au service de votre vision</h2>
     </div>
-    <p class="section-sub reveal">De la conception Ã  la livraison, nous accompagnons chaque projet avec prÃ©cision et passion.</p>
+    <p class="section-sub reveal">De la conception à la livraison, nous accompagnons chaque projet avec précision et passion.</p>
   </div>
   <div class="services-grid">
     <div class="service-card reveal">
@@ -996,8 +996,8 @@
       <div class="service-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       </div>
-      <h3 class="service-title">Architecture RÃ©sidentielle</h3>
-      <p class="service-desc">Villas privÃ©es, immeubles d'habitation et rÃ©sidences de standing conÃ§us pour le mode de vie ivoirien contemporain.</p>
+      <h3 class="service-title">Architecture Résidentielle</h3>
+      <p class="service-desc">Villas privées, immeubles d'habitation et résidences de standing conçus pour le mode de vie ivoirien contemporain.</p>
     </div>
     <div class="service-card reveal">
       <div class="service-num">02</div>
@@ -1005,7 +1005,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
       </div>
       <h3 class="service-title">Architecture Commerciale</h3>
-      <p class="service-desc">Bureaux, centres commerciaux, hÃ´tels et espaces de travail qui renforcent la productivitÃ© et l'image de marque.</p>
+      <p class="service-desc">Bureaux, centres commerciaux, hôtels et espaces de travail qui renforcent la productivité et l'image de marque.</p>
     </div>
     <div class="service-card reveal">
       <div class="service-num">03</div>
@@ -1013,15 +1013,15 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h20M4 20V8l8-6 8 6v12"/><rect x="9" y="12" width="6" height="8"/></svg>
       </div>
       <h3 class="service-title">Projets Institutionnels</h3>
-      <p class="service-desc">Ã‰difices publics, Ã©coles, hÃ´pitaux et infrastructures culturelles conÃ§us pour durer et servir les communautÃ©s.</p>
+      <p class="service-desc">Édifices publics, écoles, hôpitaux et infrastructures culturelles conçus pour durer et servir les communautés.</p>
     </div>
     <div class="service-card reveal">
       <div class="service-num">04</div>
       <div class="service-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
       </div>
-      <h3 class="service-title">Design IntÃ©rieur</h3>
-      <p class="service-desc">Espaces intÃ©rieurs harmonieux qui prolongent l'architecture extÃ©rieure tout en reflÃ©tant la personnalitÃ© du client.</p>
+      <h3 class="service-title">Design Intérieur</h3>
+      <p class="service-desc">Espaces intérieurs harmonieux qui prolongent l'architecture extérieure tout en reflétant la personnalité du client.</p>
     </div>
     <div class="service-card reveal">
       <div class="service-num">05</div>
@@ -1029,15 +1029,15 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
       </div>
       <h3 class="service-title">Urbanisme & Masterplan</h3>
-      <p class="service-desc">Planification urbaine intÃ©grÃ©e, lotissements durables et dÃ©veloppement de quartiers mixtes Ã  l'Ã©chelle des villes africaines.</p>
+      <p class="service-desc">Planification urbaine intégrée, lotissements durables et développement de quartiers mixtes à l'échelle des villes africaines.</p>
     </div>
     <div class="service-card reveal">
       <div class="service-num">06</div>
       <div class="service-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
       </div>
-      <h3 class="service-title">RÃ©habilitation & RÃ©novation</h3>
-      <p class="service-desc">Transformation et mise aux normes d'Ã©difices existants, alliant respect de l'existant et modernitÃ© des usages.</p>
+      <h3 class="service-title">Réhabilitation & Rénovation</h3>
+      <p class="service-desc">Transformation et mise aux normes d'édifices existants, alliant respect de l'existant et modernité des usages.</p>
     </div>
   </div>
 </section>
@@ -1047,11 +1047,11 @@
   <div class="projects-header">
     <div class="reveal">
       <p class="section-label">Portfolio</p>
-      <h2 class="section-title">Nos rÃ©alisations</h2>
+      <h2 class="section-title">Nos réalisations</h2>
     </div>
     <div class="filter-bar reveal">
       <button class="filter-btn active" data-filter="all">Tous</button>
-      <button class="filter-btn" data-filter="residentiel">RÃ©sidentiel</button>
+      <button class="filter-btn" data-filter="residentiel">Résidentiel</button>
       <button class="filter-btn" data-filter="commercial">Commercial</button>
       <button class="filter-btn" data-filter="institutionnel">Institutionnel</button>
     </div>
@@ -1062,9 +1062,9 @@
         <img class="project-thumb-inner" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80&auto=format&fit=crop" alt="Villa Cocody Danga" />
       </div>
       <div class="project-info">
-        <p class="project-cat">RÃ©sidentiel</p>
+        <p class="project-cat">Résidentiel</p>
         <h3 class="project-title">Villa Cocody Danga</h3>
-        <p class="project-loc">Cocody, Abidjan â€” 2023</p>
+        <p class="project-loc">Cocody, Abidjan — 2023</p>
       </div>
     </div>
     <div class="project-card reveal" data-cat="commercial">
@@ -1074,7 +1074,7 @@
       <div class="project-info">
         <p class="project-cat">Commercial</p>
         <h3 class="project-title">Immeuble de Bureaux Plateau</h3>
-        <p class="project-loc">Plateau, Abidjan â€” 2022</p>
+        <p class="project-loc">Plateau, Abidjan — 2022</p>
       </div>
     </div>
     <div class="project-card reveal" data-cat="institutionnel">
@@ -1084,37 +1084,37 @@
       <div class="project-info">
         <p class="project-cat">Institutionnel</p>
         <h3 class="project-title">Centre Culturel de Marcory</h3>
-        <p class="project-loc">Marcory, Abidjan â€” 2022</p>
+        <p class="project-loc">Marcory, Abidjan — 2022</p>
       </div>
     </div>
     <div class="project-card reveal" data-cat="residentiel">
       <div class="project-thumb">
-        <img class="project-thumb-inner" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80&auto=format&fit=crop" alt="RÃ©sidence Les Palmiers" />
+        <img class="project-thumb-inner" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80&auto=format&fit=crop" alt="Résidence Les Palmiers" />
       </div>
       <div class="project-info">
-        <p class="project-cat">RÃ©sidentiel</p>
-        <h3 class="project-title">RÃ©sidence Les Palmiers</h3>
-        <p class="project-loc">Riviera, Abidjan â€” 2021</p>
+        <p class="project-cat">Résidentiel</p>
+        <h3 class="project-title">Résidence Les Palmiers</h3>
+        <p class="project-loc">Riviera, Abidjan — 2021</p>
       </div>
     </div>
     <div class="project-card reveal" data-cat="commercial">
       <div class="project-thumb">
-        <img class="project-thumb-inner" src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&q=80&auto=format&fit=crop" alt="HÃ´tel Boutique Deux Plateaux" />
+        <img class="project-thumb-inner" src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&q=80&auto=format&fit=crop" alt="Hôtel Boutique Deux Plateaux" />
       </div>
       <div class="project-info">
         <p class="project-cat">Commercial</p>
-        <h3 class="project-title">HÃ´tel Boutique Deux Plateaux</h3>
-        <p class="project-loc">Deux Plateaux, Abidjan â€” 2021</p>
+        <h3 class="project-title">Hôtel Boutique Deux Plateaux</h3>
+        <p class="project-loc">Deux Plateaux, Abidjan — 2021</p>
       </div>
     </div>
     <div class="project-card reveal" data-cat="institutionnel">
       <div class="project-thumb">
-        <img class="project-thumb-inner" src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80&auto=format&fit=crop" alt="Ã‰cole Primaire de Yopougon" />
+        <img class="project-thumb-inner" src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80&auto=format&fit=crop" alt="École Primaire de Yopougon" />
       </div>
       <div class="project-info">
         <p class="project-cat">Institutionnel</p>
-        <h3 class="project-title">Ã‰cole Primaire de Yopougon</h3>
-        <p class="project-loc">Yopougon, Abidjan â€” 2020</p>
+        <h3 class="project-title">École Primaire de Yopougon</h3>
+        <p class="project-loc">Yopougon, Abidjan — 2020</p>
       </div>
     </div>
   </div>
@@ -1123,35 +1123,35 @@
 <!-- PROCESS -->
 <section id="process">
   <div class="process-header">
-    <p class="section-label reveal">Notre mÃ©thode</p>
-    <h2 class="section-title reveal">Un processus clair,<br>du concept Ã  la clÃ©</h2>
-    <p class="section-sub reveal" style="margin: 0 auto;">Chaque projet suit une mÃ©thodologie rigoureuse qui garantit qualitÃ©, dÃ©lais et satisfaction totale.</p>
+    <p class="section-label reveal">Notre méthode</p>
+    <h2 class="section-title reveal">Un processus clair,<br>du concept à la clé</h2>
+    <p class="section-sub reveal" style="margin: 0 auto;">Chaque projet suit une méthodologie rigoureuse qui garantit qualité, délais et satisfaction totale.</p>
   </div>
   <div class="process-steps">
     <div class="process-step active" id="step-1">
       <div class="step-circle">01</div>
       <h3 class="step-title">Brief & Analyse</h3>
-      <p class="step-desc">Ã‰coute active de vos besoins, analyse du site et dÃ©finition du programme architectural.</p>
+      <p class="step-desc">Écoute active de vos besoins, analyse du site et définition du programme architectural.</p>
     </div>
     <div class="process-step" id="step-2">
       <div class="step-circle">02</div>
       <h3 class="step-title">Conception</h3>
-      <p class="step-desc">Esquisses, avant-projets et dÃ©veloppement du concept architectural en collaboration.</p>
+      <p class="step-desc">Esquisses, avant-projets et développement du concept architectural en collaboration.</p>
     </div>
     <div class="process-step" id="step-3">
       <div class="step-circle">03</div>
       <h3 class="step-title">Dossiers techniques</h3>
-      <p class="step-desc">Plans d'exÃ©cution, spÃ©cifications techniques et dossier de permis de construire.</p>
+      <p class="step-desc">Plans d'exécution, spécifications techniques et dossier de permis de construire.</p>
     </div>
     <div class="process-step" id="step-4">
       <div class="step-circle">04</div>
       <h3 class="step-title">Suivi chantier</h3>
-      <p class="step-desc">Direction et contrÃ´le des travaux pour garantir la conformitÃ© avec les plans et les dÃ©lais.</p>
+      <p class="step-desc">Direction et contrôle des travaux pour garantir la conformité avec les plans et les délais.</p>
     </div>
     <div class="process-step" id="step-5">
       <div class="step-circle">05</div>
       <h3 class="step-title">Livraison</h3>
-      <p class="step-desc">RÃ©ception des travaux, levÃ©e des rÃ©serves et remise des clÃ©s accompagnÃ©e du dossier complet.</p>
+      <p class="step-desc">Réception des travaux, levée des réserves et remise des clés accompagnée du dossier complet.</p>
     </div>
   </div>
 </section>
@@ -1161,11 +1161,11 @@
   <div class="stats-grid">
     <div class="stat-item reveal">
       <div class="stat-num" data-target="120">0</div>
-      <p class="stat-label">Projets livrÃ©s</p>
+      <p class="stat-label">Projets livrés</p>
     </div>
     <div class="stat-item reveal">
       <div class="stat-num" data-target="15">0</div>
-      <p class="stat-label">AnnÃ©es d'expÃ©rience</p>
+      <p class="stat-label">Années d'expérience</p>
     </div>
     <div class="stat-item reveal">
       <div class="stat-num" data-target="98">0</div>
@@ -1181,16 +1181,16 @@
 <!-- TESTIMONIALS -->
 <section id="testimonials">
   <div class="testimonials-header">
-    <p class="section-label reveal">TÃ©moignages</p>
+    <p class="section-label reveal">Témoignages</p>
     <h2 class="section-title reveal">Ce que disent nos clients</h2>
   </div>
   <div class="testimonials-grid">
     <div class="testimonial-card reveal">
       <div class="testimonial-stars">
-        <span class="star">â˜…</span><span class="star">â˜…</span><span class="star">â˜…</span><span class="star">â˜…</span><span class="star">â˜…</span>
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
       </div>
       <div class="testimonial-quote">"</div>
-      <p class="testimonial-text">EL BEZRI Sacha Architecture et Design a transformÃ© notre vision en une rÃ©alitÃ© qui dÃ©passe toutes nos attentes. Le mariage entre modernitÃ© et rÃ©fÃ©rences culturelles africaines est simplement remarquable.</p>
+      <p class="testimonial-text">EL BEZRI Sacha Architecture et Design a transformé notre vision en une réalité qui dépasse toutes nos attentes. Le mariage entre modernité et références culturelles africaines est simplement remarquable.</p>
       <div class="testimonial-author">
         <div class="author-avatar">K</div>
         <div>
@@ -1201,28 +1201,28 @@
     </div>
     <div class="testimonial-card reveal">
       <div class="testimonial-stars">
-        <span class="star">â˜…</span><span class="star">â˜…</span><span class="star">â˜…</span><span class="star">â˜…</span><span class="star">â˜…</span>
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
       </div>
       <div class="testimonial-quote">"</div>
-      <p class="testimonial-text">Le suivi de chantier a Ã©tÃ© exemplaire. Chaque Ã©tape Ã©tait parfaitement coordonnÃ©e et le rÃ©sultat final reflÃ¨te un haut niveau d'expertise et de professionnalisme.</p>
+      <p class="testimonial-text">Le suivi de chantier a été exemplaire. Chaque étape était parfaitement coordonnée et le résultat final reflète un haut niveau d'expertise et de professionnalisme.</p>
       <div class="testimonial-author">
         <div class="author-avatar">T</div>
         <div>
-          <p class="author-name">TraorÃ© Ibrahim</p>
+          <p class="author-name">Traoré Ibrahim</p>
           <p class="author-role">PDG, TI Constructions</p>
         </div>
       </div>
     </div>
     <div class="testimonial-card reveal">
       <div class="testimonial-stars">
-        <span class="star">â˜…</span><span class="star">â˜…</span><span class="star">â˜…</span><span class="star">â˜…</span><span class="star">â˜…</span>
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
       </div>
       <div class="testimonial-quote">"</div>
-      <p class="testimonial-text">Notre siÃ¨ge social Ã  Plateau est devenu une rÃ©fÃ©rence architecturale dans le quartier. EL BEZRI Sacha a su crÃ©er un espace qui inspire confiance et innovation.</p>
+      <p class="testimonial-text">Notre siège social à Plateau est devenu une référence architecturale dans le quartier. EL BEZRI Sacha a su créer un espace qui inspire confiance et innovation.</p>
       <div class="testimonial-author">
         <div class="author-avatar">D</div>
         <div>
-          <p class="author-name">DiabatÃ© Fatoumata</p>
+          <p class="author-name">Diabaté Fatoumata</p>
           <p class="author-role">Fondatrice, FinTech Africa</p>
         </div>
       </div>
@@ -1234,14 +1234,14 @@
 <section id="contact">
   <div style="max-width:900px; margin-bottom:3rem;">
     <p class="section-label reveal">Parlons de votre projet</p>
-    <h2 class="section-title reveal">DÃ©marrons ensemble</h2>
-    <p class="section-sub reveal">Partagez votre vision avec nous. Notre Ã©quipe vous rÃ©pondra dans les 24 heures.</p>
+    <h2 class="section-title reveal">Démarrons ensemble</h2>
+    <p class="section-sub reveal">Partagez votre vision avec nous. Notre équipe vous répondra dans les 24 heures.</p>
   </div>
   <div class="contact-grid">
     <form id="contactForm" class="reveal">
       <div class="form-row">
         <div class="form-group">
-          <label for="firstName">PrÃ©nom</label>
+          <label for="firstName">Prénom</label>
           <input type="text" id="firstName" name="firstName" placeholder="Kofi" required />
         </div>
         <div class="form-group">
@@ -1254,24 +1254,24 @@
         <input type="email" id="email" name="email" placeholder="kofi@exemple.ci" required />
       </div>
       <div class="form-group">
-        <label for="phone">TÃ©lÃ©phone</label>
+        <label for="phone">Téléphone</label>
         <input type="tel" id="phone" name="phone" placeholder="+225 07 00 00 00 00" />
       </div>
       <div class="form-group">
         <label for="projectType">Type de projet</label>
         <select id="projectType" name="projectType">
-          <option value="">SÃ©lectionnerâ€¦</option>
-          <option value="RÃ©sidentiel">RÃ©sidentiel</option>
+          <option value="">Sélectionner…</option>
+          <option value="Résidentiel">Résidentiel</option>
           <option value="Commercial">Commercial</option>
           <option value="Institutionnel">Institutionnel</option>
-          <option value="RÃ©novation">RÃ©novation</option>
+          <option value="Rénovation">Rénovation</option>
           <option value="Urbanisme">Urbanisme</option>
           <option value="Autre">Autre</option>
         </select>
       </div>
       <div class="form-group">
         <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="DÃ©crivez votre projet, sa localisation, votre budget indicatifâ€¦"></textarea>
+        <textarea id="message" name="message" placeholder="Décrivez votre projet, sa localisation, votre budget indicatif…"></textarea>
       </div>
       <button type="submit" class="submit-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
@@ -1279,8 +1279,8 @@
       </button>
     </form>
     <div class="contact-info reveal">
-      <h3 class="contact-info-title">Nos coordonnÃ©es</h3>
-      <p class="contact-info-sub">Nous sommes disponibles du lundi au vendredi, de 8h Ã  18h, et le samedi sur rendez-vous.</p>
+      <h3 class="contact-info-title">Nos coordonnées</h3>
+      <p class="contact-info-sub">Nous sommes disponibles du lundi au vendredi, de 8h à 18h, et le samedi sur rendez-vous.</p>
       <div class="contact-items">
         <div class="contact-item">
           <div class="contact-item-icon">
@@ -1288,7 +1288,7 @@
           </div>
           <div class="contact-item-text">
             <strong>Adresse</strong>
-            <span>Cocody Danga, Abidjan<br>CÃ´te d'Ivoire</span>
+            <span>Cocody Danga, Abidjan<br>Côte d'Ivoire</span>
           </div>
         </div>
         <div class="contact-item">
@@ -1296,7 +1296,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l1.99-1.99a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           </div>
           <div class="contact-item-text">
-            <strong>TÃ©lÃ©phone</strong>
+            <strong>Téléphone</strong>
             <span>+225 07 00 00 00 00</span>
           </div>
         </div>
@@ -1316,7 +1316,7 @@
         </div>
         <div>
           <p class="whatsapp-block-title">Discuter sur WhatsApp</p>
-          <p class="whatsapp-block-sub">RÃ©ponse rapide garantie</p>
+          <p class="whatsapp-block-sub">Réponse rapide garantie</p>
         </div>
       </a>
     </div>
@@ -1328,12 +1328,12 @@
   <div class="footer-top">
     <div class="footer-brand">
       <a href="#hero" class="nav-logo">EL BEZRI Sacha<span>.</span></a>
-      <p>Cabinet d'architecture de rÃ©fÃ©rence Ã  Abidjan. Concevoir des espaces durables qui honorent l'identitÃ© africaine.</p>
+      <p>Cabinet d'architecture de référence à Abidjan. Concevoir des espaces durables qui honorent l'identité africaine.</p>
     </div>
     <div class="footer-col">
       <h4>Navigation</h4>
       <ul>
-        <li><a href="#about">Ã€ Propos</a></li>
+        <li><a href="#about">À Propos</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#projects">Projets</a></li>
         <li><a href="#process">Processus</a></li>
@@ -1343,10 +1343,10 @@
     <div class="footer-col">
       <h4>Services</h4>
       <ul>
-        <li><a href="#services">Architecture RÃ©sidentielle</a></li>
+        <li><a href="#services">Architecture Résidentielle</a></li>
         <li><a href="#services">Architecture Commerciale</a></li>
         <li><a href="#services">Projets Institutionnels</a></li>
-        <li><a href="#services">Design IntÃ©rieur</a></li>
+        <li><a href="#services">Design Intérieur</a></li>
         <li><a href="#services">Urbanisme</a></li>
       </ul>
     </div>
@@ -1360,7 +1360,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2024 EL BEZRI Sacha Architecture et Design. Tous droits rÃ©servÃ©s.</p>
+    <p>&copy; 2024 EL BEZRI Sacha Architecture et Design. Tous droits réservés.</p>
     <div class="footer-social">
       <a href="#" aria-label="Instagram">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -1383,13 +1383,13 @@
 <script>
   const WA_NUMBER = '225XXXXXXXXXX';
 
-  /* â”€â”€ NAV SCROLL â”€â”€ */
+  /* ── NAV SCROLL ── */
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 
-  /* â”€â”€ BURGER MENU â”€â”€ */
+  /* ── BURGER MENU ── */
   const burger = document.getElementById('burger');
   const mobileMenu = document.getElementById('mobileMenu');
   burger.addEventListener('click', () => {
@@ -1405,7 +1405,7 @@
     });
   });
 
-  /* â”€â”€ SCROLL REVEAL â”€â”€ */
+  /* ── SCROLL REVEAL ── */
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1419,7 +1419,7 @@
     revealObserver.observe(el);
   });
 
-  /* â”€â”€ PROCESS STEP ACTIVATION â”€â”€ */
+  /* ── PROCESS STEP ACTIVATION ── */
   const steps = document.querySelectorAll('.process-step');
   const stepObserver = new IntersectionObserver((entries) => {
     if (entries.some(e => e.isIntersecting)) {
@@ -1434,7 +1434,7 @@
   const processSection = document.getElementById('process');
   if (processSection) stepObserver.observe(processSection);
 
-  /* â”€â”€ COUNTER ANIMATION â”€â”€ */
+  /* ── COUNTER ANIMATION ── */
   function animateCounter(el) {
     const target = parseInt(el.dataset.target, 10);
     const duration = 1800;
@@ -1460,7 +1460,7 @@
   const statsSection = document.getElementById('stats');
   if (statsSection) counterObserver.observe(statsSection);
 
-  /* â”€â”€ PORTFOLIO FILTERS â”€â”€ */
+  /* ── PORTFOLIO FILTERS ── */
   const filterBtns = document.querySelectorAll('.filter-btn');
   const projectCards = document.querySelectorAll('.project-card');
   filterBtns.forEach(btn => {
@@ -1478,7 +1478,7 @@
     });
   });
 
-  /* â”€â”€ CONTACT FORM â†’ WHATSAPP â”€â”€ */
+  /* ── CONTACT FORM → WHATSAPP ── */
   document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const firstName = document.getElementById('firstName').value.trim();
@@ -1493,7 +1493,7 @@
       ``,
       `Nom : ${firstName} ${lastName}`,
       email ? `Email : ${email}` : '',
-      phone ? `TÃ©lÃ©phone : ${phone}` : '',
+      phone ? `Téléphone : ${phone}` : '',
       projectType ? `Type de projet : ${projectType}` : '',
       message ? `\nMessage :\n${message}` : '',
     ].filter(Boolean).join('\n');
@@ -1502,7 +1502,7 @@
     window.open(url, '_blank', 'noopener');
   });
 
-  /* â”€â”€ SMOOTH SCROLL FOR ANCHOR LINKS â”€â”€ */
+  /* ── SMOOTH SCROLL FOR ANCHOR LINKS ── */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const target = document.querySelector(this.getAttribute('href'));
